@@ -2,9 +2,9 @@
 Contributors: berkux
 Tags: cron,scheduler,monitor,check,alarm
 Requires at least: 3.0
-Tested up to: 6.6.1
+Tested up to: 6.6.2
 Requires PHP: 7.4
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -64,6 +64,11 @@ Basis installation: For detailed installation instructions, please read the [sta
 Configure "Cron Setup and Monitor - Get URL Cron": Select "Basic Settings" and set E-Mailadress for Statusmessages, Timeout for the http-URL- / Shortcode-requests and the expiration time of logfile-entries. Then define a cron job.
 
 == Changelog ==
+= 1.5.3 =
+* Mini Bugfix: Unneded "PHP Warning"
+* Plugin ok with WordPress 6.6.2
+* Plugin ok with "Plugin Check 1.2.0"
+
 = 1.5.2 =
 * Additional bug fixes related to the logfile
 * Plugin ok with "Plugin Check 1.1.0"
@@ -134,6 +139,7 @@ Relative Cronjob-URL: If a Cronjob-URL starts with "/" the domain is added ("hom
 Initial release on WordPress.org. Any comments and feature-requests are welcome!
 
 == Upgrade Notice ==
-= 1.5.2 =
-* Additional bug fixes related to the logfile
-* Plugin ok with "Plugin Check 1.1.0"
+= 1.5.3 =
+* Mini Bugfix: Unneded "PHP Warning"
+* Plugin ok with WordPress 6.6.2
+* Plugin ok with "Plugin Check 1.2.0"

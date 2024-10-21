@@ -3,7 +3,7 @@
 Plugin Name: Cron Setup and Monitor - Get URL Cron
 Plugin URI: https://json-content-importer.com/geturlcron
 Description: Manage cron jobs, monitor tasks, retry failures, and send email updates
-Version: 1.5.2
+Version: 1.5.3
 Author: Bernhard Kux
 Author URI: http://www.kux.de/
 Text Domain: get-url-cron
@@ -19,7 +19,7 @@ if ( !function_exists( 'add_action' )) {
 	echo 'Hello, this is a plugin: You must not call me directly.';
 	exit;
 }
-define( 'GETURLCRON_VERSION', '1.5.2' );  // current version number
+define( 'GETURLCRON_VERSION', '1.5.3' );  // current version number
 
 
 if (!defined('DISABLE_WP_CRON')) {
@@ -1561,7 +1561,6 @@ public function register_geturlcronsettings() {
 	
 		#$info = $status." ".$checkArray["info"];
 		$info = $checkArray["info"];
-		$cronname = "$no, ".__("retires:",'get-url-cron')." $done_retries, ".__("url:",'get-url-cron')." $urlout, ".__("result:",'get-url-cron')." ".$logl;
 
 		$logl = $this->geturlcron_log(
 			$idofrun, 
@@ -1572,6 +1571,10 @@ public function register_geturlcronsettings() {
 			$runtime, 
 			$status, 
 			$rt);
+
+		$cronname = "$no, ".__("retires:",'get-url-cron')." $done_retries, ".__("url:",'get-url-cron')." $urlout, ".__("result:",'get-url-cron')." ".$logl;
+
+
 		/*
 		$logl = $this->geturlcron_log(
 			$idofrun, 
