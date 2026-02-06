@@ -3,7 +3,7 @@
 Plugin Name: Cron Setup and Monitor - Get URL Cron
 Plugin URI: https://json-content-importer.com/geturlcron
 Description: Manage cron jobs, monitor tasks, retry failures, and send email updates
-Version: 1.5.3
+Version: 1.5.4
 Author: Bernhard Kux
 Author URI: http://www.kux.de/
 Text Domain: get-url-cron
@@ -19,7 +19,7 @@ if ( !function_exists( 'add_action' )) {
 	echo 'Hello, this is a plugin: You must not call me directly.';
 	exit;
 }
-define( 'GETURLCRON_VERSION', '1.5.3' );  // current version number
+define( 'GETURLCRON_VERSION', '1.5.4' );  // current version number
 
 
 if (!defined('DISABLE_WP_CRON')) {
@@ -1026,23 +1026,28 @@ public function geturlcron_settings_page() {
 }
 	
 public function register_geturlcronsettings() {
-	register_setting( 'geturlcron-options-details', 'geturlcron-emailadr' );
-	register_setting( 'geturlcron-options-details', 'geturlcron-timeout' );
-	register_setting( 'geturlcron-options-details', 'geturlcron-uninstall-deleteall' );
-	register_setting( 'geturlcron-options-details', 'geturlcron-dellog-days' );
-	register_setting( 'geturlcron-options-details', 'geturlcron-maxno-cronjobs' );
-	register_setting( 'geturlcron-options-details', 'geturlcron-mailonlyfail' );
+	register_setting( 'geturlcron-options-details', 'geturlcron-emailadr',  ['sanitize_callback' => [ $this, 'sanitize_geturlcron_register_setting'] ] );
+	register_setting( 'geturlcron-options-details', 'geturlcron-timeout',  ['sanitize_callback' => [ $this, 'sanitize_geturlcron_register_setting'] ] );
+	register_setting( 'geturlcron-options-details', 'geturlcron-uninstall-deleteall',  ['sanitize_callback' => [ $this, 'sanitize_geturlcron_register_setting'] ] );
+	register_setting( 'geturlcron-options-details', 'geturlcron-dellog-days',  ['sanitize_callback' => [ $this, 'sanitize_geturlcron_register_setting'] ] );
+	register_setting( 'geturlcron-options-details', 'geturlcron-maxno-cronjobs',  ['sanitize_callback' => [ $this, 'sanitize_geturlcron_register_setting'] ] );
+	register_setting( 'geturlcron-options-details', 'geturlcron-mailonlyfail',  ['sanitize_callback' => [ $this, 'sanitize_geturlcron_register_setting'] ] );
 	#$this->nooffields = $this->geturlcron_getnooffields();
 	for ($r = 1; $r <= $this->nooffields; $r++) {
-		register_setting( 'geturlcron-options', 'geturlcron-url-'.$r );
-		register_setting( 'geturlcron-options', 'geturlcron-interval-'.$r );
-		register_setting( 'geturlcron-options', 'geturlcron-startdate-'.$r );
-		register_setting( 'geturlcron-options', 'geturlcron-retries-'.$r );
-		register_setting( 'geturlcron-options', 'geturlcron-requiredjsonfield-'.$r );
-		register_setting( 'geturlcron-options', 'geturlcron-requiredformat-'.$r );
-		register_setting( 'geturlcron-options', 'geturlcron-sendmail-'.$r );
+		register_setting( 'geturlcron-options', 'geturlcron-url-'.$r,  ['sanitize_callback' => [ $this, 'sanitize_geturlcron_register_setting'] ] );
+		register_setting( 'geturlcron-options', 'geturlcron-interval-'.$r,  ['sanitize_callback' => [ $this, 'sanitize_geturlcron_register_setting'] ] );
+		register_setting( 'geturlcron-options', 'geturlcron-startdate-'.$r,  ['sanitize_callback' => [ $this, 'sanitize_geturlcron_register_setting'] ] );
+		register_setting( 'geturlcron-options', 'geturlcron-retries-'.$r,  ['sanitize_callback' => [ $this, 'sanitize_geturlcron_register_setting'] ] );
+		register_setting( 'geturlcron-options', 'geturlcron-requiredjsonfield-'.$r,  ['sanitize_callback' => [ $this, 'sanitize_geturlcron_register_setting'] ] );
+		register_setting( 'geturlcron-options', 'geturlcron-requiredformat-'.$r,  ['sanitize_callback' => [ $this, 'sanitize_geturlcron_register_setting'] ] );
+		register_setting( 'geturlcron-options', 'geturlcron-sendmail-'.$r,  ['sanitize_callback' => [ $this, 'sanitize_geturlcron_register_setting'] ] );
 	}
 }	
+
+	private function sanitize_geturlcron_register_setting( $input ) {
+		return sanitize_text_field( $input );
+		#return ( $input );
+	}
 
 	private function is_relative_url($url) {
 		if (preg_match("/^\//", $url)) {

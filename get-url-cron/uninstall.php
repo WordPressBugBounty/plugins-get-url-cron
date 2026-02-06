@@ -2,8 +2,8 @@
 
 if ( !defined( 'WP_UNINSTALL_PLUGIN' ) ) exit();
 
-UNINSTALL_geturlcron_plugin_options();
-function UNINSTALL_geturlcron_plugin_options() {
+geturlcron_uninstall_plugin_options();
+function geturlcron_uninstall_plugin_options() {
 	if (get_option('geturlcron-uninstall-deleteall')==1) {
 		geturlcron_UNINSTALL_options();
 		$ulp = wp_upload_dir();
