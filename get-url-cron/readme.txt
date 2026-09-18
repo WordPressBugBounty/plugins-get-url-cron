@@ -2,7 +2,7 @@
 Contributors: berkux
 Tags: cron,scheduler,monitor,check,alarm
 Requires at least: 6.2
-Tested up to: 6.9
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 2.0.0
 License: GPLv3
